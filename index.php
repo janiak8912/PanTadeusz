@@ -30,14 +30,23 @@
               Strona glówna
             </a>
             <?php
-              for($k=1; $k<=12; $k++){
-                echo "<a href='./k$k.html' class='list-group-item list-group-item-action'>Księga $k</a>";
-
+              for ($k = 1; $k <= 12; $k++) {
+                $active = isset($_GET['k']) && $_GET['k'] == $k ? "active" : "";
+                echo "<a href='./index.php?k=$k' class='list-group-item list-group-item-action $active'>Księga $k</a>";
               }
             ?>
           </div>
         </div>
-        <div class="col-8"></div>
+        <div class="col-8">
+          <?php
+          if(isset($_GET["k"])){
+            $i = $_GET["k"];
+            readfile("./k".$i.".html");
+          } else{
+            echo '<img src="./pan_tadeusz.jpg" alt="Pan Tadeusz" class="img-fluid img-thumbnail">';
+          }
+          ?>
+        </div>
       </div>
     </section>
     <footer class="container">
